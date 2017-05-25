@@ -9,13 +9,14 @@ CREATE VIEW v_articleViews AS
                           GROUP BY articles.title;
 ```
 ### Joins articles.slug with log.path and groups the result by articles.author
+```sql
 CREATE VIEW v_authorViews AS
                           SELECT author, count(*) AS total_views
                           FROM articles, log
                           WHERE articles.slug = substring(log.path FROM 10)
                           GROUP BY articles.author
                           ORDER BY total_views;
-
+```
 ### Pick out the day from log.time where the status gave an error. Count the results and group them individually.
 ```sql
 CREATE VIEW v_badRequests AS
