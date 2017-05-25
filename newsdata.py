@@ -7,7 +7,7 @@ Querying neatly formatted information from a (postgreSQL) news database.
 
 This file enables you to look at data in different ways.
 To achieve any of these queryes, views have been made to simplyfy things.
-You can read more about the views used here, in the README.
+You can read more about the views used here, in the DB-Views.md file.
 """
 
 
