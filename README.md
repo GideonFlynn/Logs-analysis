@@ -14,7 +14,7 @@ Look at DB-Views.md for more information.
 ## Requirements
 To run the commands you need:
 - Python 2.7
-- postgreSQL
+- postgreSQL views(provided in DB-Views.md)
 - A terminal
 - newsdata.sql
 
@@ -31,9 +31,6 @@ python newsdata.py
 - Pyhton 2.7 and the psycopg2 module
 - postgreSQL database
 - Vagrant
-
-
-## License
 
 ## Acknowledgements
 - The forums on udacity are really great, the same goes for 'stack overflow' and the rest of the internet.
