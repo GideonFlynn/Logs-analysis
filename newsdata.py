@@ -11,7 +11,8 @@ The third function shows on which days more than 1% of requests were errors.
 To achieve any of these queryes, views have been made to simplyfy things and language-injection minimal.
 You can read more about the views used here, in the README.
 """
-
+```
+```python
 def get_top3_articles():
     """Return articles from the database, most viewed first.
     'v_articleViews' is created in news.sql, it fetches how many times any article has been accessed."""
@@ -23,7 +24,8 @@ def get_top3_articles():
     top3_articles = c.fetchall()
     db.close()
     return top3_articles
-
+```
+```python
 def get_top_authors():
     """Return the most popular article authors of all time, most popular first."""
     db = psycopg2.connect(database=DBNAME)
@@ -35,7 +37,8 @@ def get_top_authors():
     top_authors = c.fetchall()
     db.close()
     return top_authors
-
+```
+```python
 def error_requests():
     """Return which days the database recorded more than 1% of requests as errors."""
     db = psycopg2.connect(database=DBNAME)
