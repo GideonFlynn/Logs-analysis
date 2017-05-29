@@ -1,6 +1,6 @@
-import psycopg2
+#!/usr/bin/python2.7
 
-DBNAME = "news"
+import psycopg2
 
 """
 Querying neatly formatted information from a (postgreSQL) news database.
@@ -8,6 +8,8 @@ This file enables you to look at data in different ways.
 To achieve any of these queryes, views have been made to simplyfy things.
 You can read more about the views used here, in the DB-Views.md file.
 """
+
+DBNAME = "news"
 
 
 def get_top3_articles():
