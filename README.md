@@ -1,20 +1,66 @@
 # FSND - Logs analysis project by Mathias Wøbbe
 
-## Features: display information from a database with three tables:
+## Features:
+display information from a database with three tables:
 - 'articles', 'authors' and 'log'.
-
+'''sql
 The code can display:
 - The top 3 articles
 - The most popular authors by article views
 - On which days more than 1% of HTTP requests led to errors.
 
-## Views
-Look at DB-Views.md for more information.
+# Several views were used for this project, here are the commands used to create them:
+
+### Join articles.slug with log.path and groups the result by articles.title
+```sql
+CREATE VIEW v_articleViews AS
+                          SELECT title AS "Title", count(*) AS "Views"
+                          FROM articles, log
+                          WHERE articles.slug = substring(log.path FROM 10)
+                          GROUP BY articles.title;
+```
+### Join articles.slug with log.path and groups the result by articles.author
+```sql
+CREATE VIEW v_authorViews AS
+                          SELECT author, count(*) AS total_views
+                          FROM articles, log
+                          WHERE articles.slug = substring(log.path FROM 10)
+                          GROUP BY articles.author
+                          ORDER BY total_views;
+```
+
+### Extract day and join log.time where the log.status gave an error. Count the results and group them individually.
+```sql
+CREATE VIEW v_badRequests AS
+                          SELECT date_trunc('day', time) AS "Day" , count(time) AS "bad"
+                          FROM log
+                          WHERE log.status = '404 NOT FOUND'
+                          GROUP BY 1
+                          ORDER BY 1;
+```
+### Pick out the day from log.time. Count the results and group them individually.
+```sql
+CREATE VIEW v_totalRequests AS
+                      SELECT date_trunc('day', time) AS "day" , count(time) AS "total"
+                      FROM log
+                      GROUP BY 1
+                      ORDER BY 1;
+```
+### Multiply the amout of bad requests with 100 then compare the number with the total amount of requests.
+### If the amount of bad requests exceeds the total amount, it return a row.
+```sql
+CREATE VIEW v_errorDays AS
+                        SELECT b.bad AS "bad", t.total AS "whichday", t.day AS "day"
+                        FROM v_badRequests b, v_totalRequests t
+                        WHERE ("bad" * 100) > ("total") AND b."Day" = t.day
+                        ORDER BY day ASC;
+```
+
 
 ## Requirements
 To run the commands you need:
 - Python 2.7
-- postgreSQL views(provided in DB-Views.md)
+- postgreSQL
 - A terminal
 - newsdata.sql
 
@@ -31,6 +77,9 @@ python newsdata.py
 - Pyhton 2.7 and the psycopg2 module
 - postgreSQL database
 - Vagrant
+
+
+## License
 
 ## Acknowledgements
 - The forums on udacity are really great, the same goes for 'stack overflow' and the rest of the internet.
