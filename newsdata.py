@@ -29,17 +29,22 @@ def get_top3_articles():
     db.close()
 
 def get_top_authors():
-    "Return the most popular article authors of all time, most popular first."
+    """Returns most popular article authors of all time, most popular first"""
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
+    print "\nFetching top authors, most popular first...\n"
     c.execute("""SELECT name AS "Authors name",
-                            total_views AS "Total number of article views"
-                            FROM authors, v_authorViews
-                            WHERE authors.id = v_authorViews.author
-                            ORDER BY v_authorViews.total_views DESC;""")
-    top_authors = c.fetchall()
+                total_views AS "Total number of article views"
+                FROM authors, v_authorViews
+                WHERE authors.id = v_authorViews.author
+                ORDER BY v_authorViews.total_views DESC;""")
+    for top_authors in c:
+        print str('%s %s %s %s' % (top_authors[0],
+                                   "with",
+                                   top_authors[1],
+                                   "Views\n"))
+    return
     db.close()
-    return top_authors
 
 
 def error_requests():
