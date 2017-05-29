@@ -62,8 +62,7 @@ def error_requests():
     return
     db.close()
 
-# For testing if python make its output 'clearly formatted plain text':
-#
-# print get_top3_articles()
-# print get_top_authors()
-# print error_requests()
+
+#get_top3_articles()
+#get_top_authors()
+#error_requests()
