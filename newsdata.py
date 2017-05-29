@@ -17,13 +17,16 @@ def get_top3_articles():
     it fetches how many times any article has been accessed."""
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
+    print "\nFetching top 3 articles, most popular first...\n"
     c.execute("""SELECT * FROM v_articleViews
                 ORDER BY "Views" DESC
                 LIMIT 3;""")
-    top3_articles = c.fetchall()
+    for top3_articles in c:
+        print str('%s %s %s' % (top3_articles[0],
+                                top3_articles[1],
+                                "\n"))
+    return
     db.close()
-    return top3_articles
-
 
 def get_top_authors():
     "Return the most popular article authors of all time, most popular first."
