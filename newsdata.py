@@ -48,15 +48,19 @@ def get_top_authors():
 
 
 def error_requests():
-    """Return which days more than 1% of requests were errors."""
+    """Returns which days more than 1% of requests were errors"""
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
-    c.execute("""SELECT "No. of bad requests",
-                        "which day"::date
-                        FROM v_errorDays;""")
-    which_days = c.fetchall()
+    print "\nFetching which days more than 1% of requests were errors...\n"
+    c.execute("""SELECT bad, to_char(day, 'Mon-MM YYYY')
+                 FROM v_errorDays""")
+    for which_days in c:
+        print str("There were " + '%s %s %s %s' % (which_days[0],
+                                                   'bad requests',
+                                                   which_days[1],
+                                                   "\n"))
+    return
     db.close()
-    return which_days
 
 # For testing if python make its output 'clearly formatted plain text':
 #
