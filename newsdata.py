@@ -4,7 +4,6 @@ DBNAME = "news"
 
 """
 Querying neatly formatted information from a (postgreSQL) news database.
-
 This file enables you to look at data in different ways.
 To achieve any of these queryes, views have been made to simplyfy things.
 You can read more about the views used here, in the DB-Views.md file.
@@ -27,6 +26,7 @@ def get_top3_articles():
                                 "\n"))
     return
     db.close()
+
 
 def get_top_authors():
     """Returns most popular article authors of all time, most popular first"""
@@ -63,6 +63,6 @@ def error_requests():
     db.close()
 
 
-#get_top3_articles()
-#get_top_authors()
-#error_requests()
+# get_top3_articles()
+# get_top_authors()
+# error_requests()
