@@ -1,8 +1,9 @@
 # FSND - Logs analysis project by Mathias Wøbbe
 
 ## Features:
-display information from a database with three tables:
+Display information from a database with three tables:
 - 'articles', 'authors' and 'log'.
+
 '''sql
 The code can display:
 - The top 3 articles
