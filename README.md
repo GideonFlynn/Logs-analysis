@@ -47,7 +47,7 @@ CREATE VIEW v_totalRequests AS
                       ORDER BY 1;
 ```
 ### Multiply the amout of bad requests with 100 then compare the number with the total amount of requests.
-### If the amount of bad requests exceeds the total amount, it return a row.
+### If the amount of bad requests exceeds the total amount, return the row.
 ```sql
 CREATE VIEW v_errorDays AS
                         SELECT b.bad AS "bad", t.total AS "whichday", t.day AS "day"
