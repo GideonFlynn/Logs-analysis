@@ -11,6 +11,7 @@ You can read more about the views used here, in the DB-Views.md file.
 
 DBNAME = "news"
 
+
 def connect(database_name="news"):
     """Connect to the PostgreSQL database.  Returns a database connection."""
     try:
@@ -32,8 +33,8 @@ def get_top3_articles():
                 LIMIT 3;""")
     for top3_articles in c:
         print str('{} {} {}'.format(top3_articles[0],
-                                top3_articles[1],
-                                "\n"))
+                                    top3_articles[1],
+                                    "\n"))
     return
     db.close()
 
@@ -49,9 +50,9 @@ def get_top_authors():
                 ORDER BY v_authorViews.total_views DESC;""")
     for top_authors in c:
         print str('{} {} {} {}'.format(top_authors[0],
-                                   "with",
-                                   top_authors[1],
-                                   "Views\n"))
+                                       "with",
+                                       top_authors[1],
+                                       "Views\n"))
     return
     db.close()
 
@@ -64,9 +65,9 @@ def error_requests():
                  FROM v_errorDays""")
     for which_days in c:
         print str("There were " + '{} {} {} {}'.format(which_days[0],
-                                                   'bad requests',
-                                                   which_days[1],
-                                                   "\n"))
+                                                       'bad requests',
+                                                       which_days[1],
+                                                       "\n"))
     return
     db.close()
 
