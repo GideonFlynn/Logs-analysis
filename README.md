@@ -4,10 +4,19 @@
 Display information from a database with three tables:
 - 'articles', 'authors' and 'log'.
 
-The code can display:
-- The top 3 articles
+### The code can display:
+- The top 3 articles:
+  ```Python
+  get_top3_articles()
+  ```
 - The most popular authors by article views
+  ```
+  get_top_authors()
+  ```
 - On which days more than 1% of HTTP requests led to errors.
+  ```Python
+  error_requests()
+  ```
 
 # Several views were used for this project, here are the commands used to create them:
 
